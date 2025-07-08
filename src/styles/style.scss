@@ -32,6 +32,23 @@ body {
   .el-input {
     --el-input-width: 160px;
   }
+
+  // Ensure long labels wrap properly without extra indentation
+  .el-form-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .el-form-item__label {
+      width: auto !important;
+      margin-right: 4px;
+      white-space: normal;
+    }
+
+    .el-form-item__content {
+      margin-left: 0 !important;
+    }
+  }
 }
 
 .table-actions {
