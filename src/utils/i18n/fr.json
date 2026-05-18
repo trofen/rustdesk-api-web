@@ -412,6 +412,12 @@
   "Rule": {
     "One": "Règle"
   },
+  "NoAccess": {
+    "One": "Aucun accès"
+  },
+  "RecordRules": {
+    "One": "Accès à l'entrée"
+  },
   "Read": {
     "One": "Lecture"
   },

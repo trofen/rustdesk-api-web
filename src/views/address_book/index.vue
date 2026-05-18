@@ -66,10 +66,11 @@
         <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="500" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="650" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
+            <el-button v-if="row.collection_id > 0" type="primary" @click="showRecordRules(row)">{{ T('RecordRules') }}</el-button>
             <!--            <el-button type="primary" @click="toShowShare(row)">{{ T('ShareByWebClient') }}</el-button>-->
             <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
             <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
@@ -174,11 +175,14 @@
                             @cancel="shareToWebClientVisible=false"
                             @success=""/>
         </el-dialog>-->
+    <el-dialog v-model="recordRulesVisible" :title="T('RecordRules')" destroy-on-close top="5vh" width="80%">
+      <RecordRule :record="clickRow" :is_my="0"></RecordRule>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
-  import { onActivated, onMounted, watch } from 'vue'
+  import { onActivated, onMounted, ref, watch } from 'vue'
   import { useRepositories } from '@/views/address_book/index'
   import { toWebClientLink } from '@/utils/webclient'
   import { T } from '@/utils/i18n'
@@ -189,6 +193,7 @@
   import { CopyDocument } from '@element-plus/icons'
   import PlatformIcons from '@/components/icons/platform.vue'
   import { loadAllUsers } from '@/global'
+  import RecordRule from '@/views/address_book/recordRule.vue'
 
   const appStore = useAppStore()
   const route = useRoute()
@@ -227,6 +232,12 @@
 
   watch(() => listQuery.page_size, handlerQuery)
 
+  const clickRow = ref({})
+  const recordRulesVisible = ref(false)
+  const showRecordRules = (row) => {
+    clickRow.value = row
+    recordRulesVisible.value = true
+  }
 
 </script>
 

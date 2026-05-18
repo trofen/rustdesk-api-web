@@ -401,6 +401,12 @@
   "Rule": {
     "One": "規則"
   },
+  "NoAccess": {
+    "One": "無存取權限"
+  },
+  "RecordRules": {
+    "One": "條目存取權限"
+  },
   "Read": {
     "One": "讀取"
   },

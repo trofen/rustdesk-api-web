@@ -1,6 +1,6 @@
 import { computed, reactive, ref } from 'vue'
-import { list as admin_list, create as admin_create, update as admin_update, remove as admin_remove } from '@/api/address_book_collection_rule'
-import { list as my_list, create as my_create, update as my_update, remove as my_remove } from '@/api/my/address_book_collection_rule'
+import { list as admin_list, create as admin_create, update as admin_update, remove as admin_remove } from '@/api/address_book_rule'
+import { list as my_list, create as my_create, update as my_update, remove as my_remove } from '@/api/my/address_book_rule'
 import { groupUsers } from '@/api/user'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { T } from '@/utils/i18n'
@@ -18,6 +18,7 @@ export function useRepositories (api_type = 'my') {
     page: 1,
     page_size: 10,
     collection_id: null,
+    address_book_row_id: null,
   })
 
   const getList = async () => {
@@ -70,6 +71,7 @@ export function useRepositories (api_type = 'my') {
   const formData = reactive({
     id: 0,
     collection_id: null,
+    address_book_row_id: null,
     type: TYPE_U,
     rule: 1,
     g_id: null,
@@ -80,7 +82,6 @@ export function useRepositories (api_type = 'my') {
 
   const toEdit = (row) => {
     formVisible.value = true
-    // Copy the selected row into the form.
     Object.keys(formData).forEach(key => {
       formData[key] = row[key]
     })
@@ -93,15 +94,13 @@ export function useRepositories (api_type = 'my') {
     }
   }
   const toAdd = () => {
-    // Reset editable form fields.
     formData.id = 0
     formData.type = TYPE_U
     formData.rule = 1
     formData.g_id = null
     formData.u_id = null
-
+    formData.to_id = null
     formVisible.value = true
-
   }
   const submit = async () => {
     const api = formData.id ? apis[api_type].update : apis[api_type].create

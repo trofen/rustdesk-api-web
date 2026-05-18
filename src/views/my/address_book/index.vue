@@ -53,11 +53,12 @@
         <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="760" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)">{{ T('ShareByWebClient') }}</el-button>
+            <el-button v-if="row.collection_id > 0" type="primary" @click="showRecordRules(row)">{{ T('RecordRules') }}</el-button>
             <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
             <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
           </template>
@@ -170,6 +171,9 @@
         </el-form-item>
       </el-form>
     </el-dialog>
+    <el-dialog v-model="recordRulesVisible" :title="T('RecordRules')" destroy-on-close top="5vh" width="80%">
+      <RecordRule :record="clickRow" :is_my="1"></RecordRule>
+    </el-dialog>
   </div>
 </template>
 
@@ -184,6 +188,7 @@
   import { handleClipboard } from '@/utils/clipboard'
   import { CopyDocument } from '@element-plus/icons'
   import PlatformIcons from '@/components/icons/platform.vue'
+  import RecordRule from '@/views/address_book/recordRule.vue'
 
   const appStore = useAppStore()
   const {
@@ -252,6 +257,12 @@
     batchEditTagsFormData.value.row_ids = val.map(v => v.row_id)
   }
 
+  const clickRow = ref({})
+  const recordRulesVisible = ref(false)
+  const showRecordRules = (row) => {
+    clickRow.value = row
+    recordRulesVisible.value = true
+  }
 
 </script>
 
