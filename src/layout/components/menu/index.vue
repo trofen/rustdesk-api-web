@@ -3,9 +3,9 @@
           class="menus"
           :collapse="isCollapse"
           :default-active="activeIndex"
-          background-color="#2d3a4b"
-          text-color="#fff"
-          active-text-color="#409eff"
+          background-color="var(--rd-sidebar-bg)"
+          text-color="#d1d5db"
+          active-text-color="#ffffff"
           router
   >
     <menu-item v-for="(route,index) in routes" :key="route.name" :route="route"></menu-item>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { defineComponent, ref, onMounted, watch, computed } from 'vue'
+  import { defineComponent, ref, computed } from 'vue'
   import { useRouteStore } from '@/store/router'
   import MenuItem from '@/layout/components/menu/item.vue'
   import { useRoute } from 'vue-router'
@@ -46,8 +46,36 @@
   .menus {
     min-height: 100vh;
     border-right: none;
+    padding: 10px 8px;
+    background: var(--rd-sidebar-bg);
+
     &:not(.el-menu--collapse) {
-      width: var(--sideBarWidth);
+      width: var(--rd-sidebar-width);
+    }
+
+    :deep(.el-menu-item),
+    :deep(.el-sub-menu__title) {
+      height: 42px;
+      margin: 4px 0;
+      border-radius: var(--rd-radius);
+      color: #d1d5db;
+      line-height: 42px;
+    }
+
+    :deep(.el-menu-item:hover),
+    :deep(.el-sub-menu__title:hover) {
+      background: var(--rd-sidebar-hover);
+      color: #fff;
+    }
+
+    :deep(.el-menu-item.is-active) {
+      background: var(--rd-primary);
+      color: #fff;
+      font-weight: 650;
+    }
+
+    :deep(.el-icon) {
+      color: currentColor;
     }
 
   }

@@ -100,7 +100,7 @@
           <el-table-column v-if="c.name==='updated_at'" prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
         </template>
 
-        <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="380" class-name="table-actions" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
@@ -120,7 +120,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="!formData.row_id?T('Create'):T('Update')" width="800">
+    <el-dialog v-model="formVisible" :title="!formData.row_id?T('Create'):T('Update')" class="responsive-dialog">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item label="ID" prop="id" required>
           <el-input v-model="formData.id"></el-input>
@@ -166,11 +166,11 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')" destroy-on-close>
+    <el-dialog v-model="ABFormVisible" class="responsive-dialog" :title="T('Create')" destroy-on-close>
       <createABForm :peer="clickRow" @success="ABFormVisible=false" @cancel="ABFormVisible=false"></createABForm>
     </el-dialog>
 
-    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')">
+    <el-dialog v-model="batchABFormVisible" class="responsive-dialog" :title="T('Create')">
       <el-form class="dialog-form" ref="form" :model="batchABFormData" label-width="120px">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="batchABFormData.user_id" @change="changeUserForBatchCreateAB">
@@ -205,7 +205,7 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="columnSettingVisible" title="Column Setting">
+    <el-dialog v-model="columnSettingVisible" class="responsive-dialog" title="Column Setting">
       <div v-for="(row, key) in visibleColumns" :key="key" style="margin-bottom: 10px;display: flex;align-items: center">
         <div style="width: 200px">
           <el-checkbox v-model="row.visible" :label="true">{{ T(row.label) }}</el-checkbox>
@@ -339,14 +339,14 @@
 
   const toEdit = (row) => {
     formVisible.value = true
-    //将row中的数据赋值给formData
+    // Copy the selected row into the edit form.
     Object.keys(formData).forEach(key => {
       formData[key] = row[key]
     })
   }
   const toAdd = () => {
     formVisible.value = true
-    //重置formData
+    // Reset formData before creating a new peer.
     formData.row_id = 0
     formData.cpu = ''
     formData.hostname = ''
@@ -409,20 +409,20 @@
     reader.onload = async (e) => {
       const data = e.target.result
       console.log(data)
-      //组装数据
+      // Build rows from the uploaded CSV.
       const rows = data.split('\n')
       const keys = rows[0].split(',')
       console.log(keys, rows.slice(1).map(row => row.split(',')))
       const values = rows.slice(1).map(row => {
         const obj = {}
         row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).forEach((v, i) => {
-          //去掉两边的"
+          // Remove wrapping quotes.
           obj[keys[i]] = v.trim().replace(/^"|"$/g, '')
         })
         return obj
       }).filter(item => item.id)
       // console.log(values)
-      //移除不需要的key
+      // Drop unsupported columns.
       values.forEach(item => {
         item.group_id = parseInt(item.group_id)
         Object.keys(item).forEach(key => {
@@ -447,7 +447,7 @@
     return false
   }
   const toImport = () => {
-    ElMessage.warning('暂未实现')
+    ElMessage.warning('Not implemented')
   }
 
   const ABFormVisible = ref(false)
@@ -482,7 +482,7 @@
     }
   }
 
-  // 批量添加到地址簿 start
+  // Batch add selected peers to an address book.
   const { allUsers, getAllUsers } = loadAllUsers()
   onMounted(getAllUsers)
   const {
@@ -523,7 +523,6 @@
       batchABFormVisible.value = false
     }
   }
-  // 批量添加到地址簿 end
 
   const columnSettingVisible = ref(false)
   const allColumns = ref([
@@ -569,10 +568,6 @@
 </script>
 
 <style scoped lang="scss">
-.list-query .el-select {
-  --el-select-width: 180px;
-}
-
 .last_oline_time {
   display: flex;
   justify-content: center;

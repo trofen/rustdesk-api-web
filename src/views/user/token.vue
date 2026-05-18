@@ -102,9 +102,4 @@
 </script>
 
 <style scoped lang="scss">
-.list-query .el-select {
-  --el-select-width: 160px;
-}
-
-
 </style>

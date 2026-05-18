@@ -54,7 +54,7 @@
         <el-table-column prop="alias" :label="T('Alias')" align="center" width="80"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" width="150"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
-        <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="360" class-name="table-actions" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
@@ -74,7 +74,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }">
+    <el-dialog v-model="formVisible" :title="T('Information')" class="responsive-dialog">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item label="ID" prop="id">
           <el-input v-model="formData.id" disabled></el-input>
@@ -103,7 +103,7 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')">
+    <el-dialog v-model="ABFormVisible" class="responsive-dialog" :title="T('Create')">
       <el-form class="dialog-form" ref="form" :model="ABFormData" label-width="120px">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="ABFormData.collection_id" clearable @change="changeCollectionForUpdate">
@@ -151,7 +151,7 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')">
+    <el-dialog v-model="batchABFormVisible" class="responsive-dialog" :title="T('Create')">
       <el-form class="dialog-form" ref="form" :model="batchABFormData" label-width="120px">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="batchABFormData.collection_id" clearable @change="changeCollectionForBatchCreateAB">
@@ -378,10 +378,6 @@
 </script>
 
 <style scoped lang="scss">
-.list-query .el-select {
-  --el-select-width: 180px;
-}
-
 .last_oline_time {
   display: flex;
   justify-content: center;

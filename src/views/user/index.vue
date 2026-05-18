@@ -36,7 +36,7 @@
         <el-table-column prop="remark" :label="T('Remark')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="650">
+        <el-table-column :label="T('Actions')" align="center" width="390" class-name="table-actions">
           <template #default="{row}">
             <el-button @click="toTag(row)">{{ T('UserTags') }}</el-button>
             <el-button @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>

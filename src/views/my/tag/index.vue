@@ -53,7 +53,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" width="800">
+    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" class="responsive-dialog">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item :label="T('AddressBookName')">
           <el-select v-model="formData.collection_id" clearable>
@@ -121,10 +121,6 @@
 </script>
 
 <style scoped lang="scss">
-.list-query .el-select {
-  --el-select-width: 160px;
-}
-
 .colors {
   display: flex;
   justify-content: center;

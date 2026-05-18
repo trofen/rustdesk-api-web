@@ -10,15 +10,17 @@ import zhTw from 'element-plus/es/locale/lang/zh-tw'
 import { admin, app, server } from '@/api/config'
 
 const langs = {
-  'zh-CN': { name: '中文', value: zhCn, sideBarWidth: '210px' },
-  'en': { name: 'English', value: en, sideBarWidth: '230px' },
-  'fr': { name: 'Français', value: fr, sideBarWidth: '280px' },
-  'ko': { name: '한국어', value: ko, sideBarWidth: '230px' },
-  'ru': { name: 'Русский', value: ru, sideBarWidth: '250px' },
-  'es': { name: 'Español', value: es, sideBarWidth: '280px' },
-  'zh-TW': { name: '中文繁体', value: zhTw, sideBarWidth: '210px' },
+  'zh-CN': { name: 'Chinese (Simplified)', value: zhCn, sideBarWidth: '240px' },
+  'en': { name: 'English', value: en, sideBarWidth: '240px' },
+  'fr': { name: 'Francais', value: fr, sideBarWidth: '240px' },
+  'ko': { name: 'Korean', value: ko, sideBarWidth: '240px' },
+  'ru': { name: 'Russian', value: ru, sideBarWidth: '240px' },
+  'es': { name: 'Espanol', value: es, sideBarWidth: '240px' },
+  'zh-TW': { name: 'Chinese (Traditional)', value: zhTw, sideBarWidth: '240px' },
 }
-const defaultLang = localStorage.getItem('lang') || navigator.language || 'zh-CN'
+const savedLang = localStorage.getItem('lang')
+const browserLang = navigator.language || 'zh-CN'
+const defaultLang = savedLang || (langs[browserLang] ? browserLang : browserLang.split('-')[0]) || 'zh-CN'
 export const useAppStore = defineStore({
   id: 'App',
   state: () => ({

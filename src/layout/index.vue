@@ -1,6 +1,6 @@
 <template>
   <el-config-provider :locale="appStore.setting.locale.value">
-    <el-container :style="{'--sideBarWidth': sideBarWidth}">
+    <el-container class="app-shell">
       <el-aside :width="leftWidth" class="app-left">
         <g-aside></g-aside>
       </el-aside>
@@ -36,8 +36,7 @@
 
   const appStore = useAppStore()
   const tagStore = useTagsStore()
-  const sideBarWidth = computed(() => appStore.setting.locale.sideBarWidth)
-  const leftWidth = computed(() => appStore.setting.sideIsCollapse ? '64px' : 'var(--sideBarWidth)')
+  const leftWidth = computed(() => appStore.setting.sideIsCollapse ? '64px' : 'var(--rd-sidebar-width)')
 
   const cachedTags = ref([])
 
@@ -45,26 +44,69 @@
 </script>
 
 <style lang="scss" scoped>
+.app-shell {
+  min-height: 100vh;
+  background: var(--rd-bg);
+}
+
 .app-header {
-  background-color: #3f454b;
-  color: var(--basicWhite);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--rd-header-height);
+  padding: 0 20px;
+  border-bottom: 1px solid var(--rd-border);
+  background-color: var(--rd-header-bg);
+  color: var(--rd-text);
+  backdrop-filter: blur(14px);
   display: flex;
-  height: 50px;
 }
 
 .header-tags {
   height: auto;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--rd-border);
+  background: var(--rd-surface);
   display: flex;
   padding: 0;
 }
 
 .app-left {
-  transition: width 0.5s;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 100vh;
+  transition: width 0.22s ease;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .app-container {
   min-height: 100vh;
+  min-width: 0;
+}
+
+.app-main {
+  padding: 18px;
+  background: var(--rd-bg);
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 12px;
+  }
+
+  .app-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  .app-container {
+    min-width: 100vw;
+  }
+
+  .app-main {
+    padding: 12px;
+  }
 }
 </style>
 

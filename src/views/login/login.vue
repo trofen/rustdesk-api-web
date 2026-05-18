@@ -173,23 +173,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #2d3a4b;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--el-color-primary-light-9), var(--rd-bg) 42%);
   padding: 20px;
   box-sizing: border-box;
 }
 
 .login-card {
-  width: 360px;
-  background-color: #283342;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: min(380px, 100%);
+  background-color: var(--rd-surface);
+  padding: 32px;
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius);
+  box-shadow: var(--rd-shadow);
   text-align: center;
 }
 
 h1 {
   margin-bottom: 20px;
+  color: var(--rd-text);
   font-size: 24px;
   font-weight: bold;
 }

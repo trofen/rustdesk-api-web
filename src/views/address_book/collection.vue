@@ -29,7 +29,7 @@
         <el-table-column prop="name" :label="T('AddressBook')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="360" fixed="right">
           <template #default="{row}">
             <el-button type="primary" @click="showRules(row)">{{ T('ShareRules') }}</el-button>
             <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
@@ -47,7 +47,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" class="responsive-dialog" :title="!formData.id?T('Create') :T('Update') ">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="formData.user_id">
@@ -68,7 +68,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close top="5vh" width="80%">
+    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close top="5vh" class="wide-dialog">
       <Rule :collection="clickRow" :is_my="0"></Rule>
     </el-dialog>
 

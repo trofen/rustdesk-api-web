@@ -5,7 +5,7 @@
 </template>
 <script>
   import Menus from '@/layout/components/menu/index.vue'
-  import { defineComponent, ref, onMounted } from 'vue'
+  import { defineComponent } from 'vue'
 
   export default defineComponent({
     name: 'GAside',
@@ -15,6 +15,7 @@
 
 <style scoped lang="scss">
 .scroll-sidebar {
-  background-color: #2d3a4b;
+  background-color: var(--rd-sidebar-bg);
+  color: #fff;
 }
 </style>

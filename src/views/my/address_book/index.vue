@@ -53,7 +53,7 @@
         <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="760" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="430" fixed="right">
           <template #default="{row}">
             <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
@@ -74,7 +74,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" class="responsive-dialog" :title="!formData.row_id?T('Create') :T('Update') ">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="formData.collection_id" clearable @change="changeCollectionForUpdate">
@@ -147,13 +147,13 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <el-dialog v-model="shareToWebClientVisible" class="responsive-dialog" :close-on-click-modal="false">
       <shareByWebClient :id="shareToWebClientForm.id"
                         :hash="shareToWebClientForm.hash"
                         @cancel="shareToWebClientVisible=false"
                         @success=""/>
     </el-dialog>
-    <el-dialog v-model="batchEditTagVisible" width="800">
+    <el-dialog v-model="batchEditTagVisible" class="responsive-dialog">
       <el-form :model="batchEditTagsFormData" label-width="120px" class="dialog-form">
         <el-form-item :label="T('Tags')" prop="tags">
           <el-select v-model="batchEditTagsFormData.tags" multiple>
@@ -171,7 +171,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="recordRulesVisible" :title="T('RecordRules')" destroy-on-close top="5vh" width="80%">
+    <el-dialog v-model="recordRulesVisible" :title="T('RecordRules')" destroy-on-close top="5vh" class="wide-dialog">
       <RecordRule :record="clickRow" :is_my="1"></RecordRule>
     </el-dialog>
   </div>

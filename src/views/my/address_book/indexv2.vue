@@ -65,7 +65,7 @@
           <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
           <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
           <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-          <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+          <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="380" fixed="right">
             <template #default="{row}">
               <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
               <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
@@ -88,7 +88,7 @@
     </el-main>
 
 
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" class="responsive-dialog" :title="!formData.row_id?T('Create') :T('Update') ">
       <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
         <el-form-item label="ID" prop="id" required>
           <el-input v-model="formData.id"></el-input>
@@ -155,7 +155,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <el-dialog v-model="shareToWebClientVisible" class="responsive-dialog" :close-on-click-modal="false">
       <shareByWebClient :id="shareToWebClientForm.id"
                         :hash="shareToWebClientForm.hash"
                         @cancel="shareToWebClientVisible=false"
