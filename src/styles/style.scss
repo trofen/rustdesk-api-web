@@ -104,19 +104,46 @@ body {
   .el-form {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 12px;
+    gap: 12px 14px;
     align-items: flex-end;
   }
 
   .el-form-item {
-    margin: 0 0 8px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 10px !important;
   }
 
   .el-form-item__label {
+    width: auto !important;
+    height: auto;
+    min-height: 18px;
+    margin: 0 0 6px;
+    padding: 0;
     color: var(--rd-text-muted);
+    font-size: 12px;
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 1.25 !important;
+    text-align: left;
     white-space: normal;
+    word-break: normal;
+  }
+
+  .el-form-item__content {
+    width: 100%;
+    margin-left: 0 !important;
+    line-height: 1;
+  }
+
+  .el-form-item:not(:has(.el-form-item__label)) {
+    width: auto;
+
+    .el-form-item__content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
   }
 
   .el-select,

@@ -295,6 +295,9 @@
   "FixedPasswordWarning": {
     "One": "Fixed passwords may be leaked, so please use them with caution and use one-time passwords is recommended"
   },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "For OIDC login without a password, enter any 4-20 characters"
+  },
   "ExpireTime": {
     "One": "Expire Time"
   },

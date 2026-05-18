@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="v" class="responsive-dialog" :show-close="false">
+  <el-dialog v-model="v" class="responsive-dialog" :title="T('ChangePassword')" :show-close="false" @open="resetChangePwdForm">
     <el-form ref="cpwd" class="dialog-form" :model="changePwdForm" :rules="chagePwdRules" label-width="150px" label-position="left">
       <el-form-item :label="T('OldPassword')" prop="old_password">
         <el-input v-model="changePwdForm.old_password" :placeholder="T('For OIDC login without a password, enter any 4-20 letters')" show-password></el-input>
@@ -37,15 +37,11 @@
   })
   const emit = defineEmits(['update:visible'])
 
-  // Watch for changes to the prop and emit an event if necessary
-  // watch(() => props.visible, (newVal) => {
-  //   emit('update:visible', newVal);
-  // });
-  const showChangePwd = () => {
-    emit('update:visible', true)
+  const resetChangePwdForm = () => {
     changePwdForm.old_password = ''
     changePwdForm.new_password = ''
     changePwdForm.confirmPwd = ''
+    cpwd.value?.clearValidate()
   }
   const changePwdForm = reactive({
     old_password: '',
@@ -88,12 +84,10 @@
   const userStore = useUserStore()
 
   const changePassword = async () => {
-    //验证
     const valid = await cpwd.value.validate().catch(_ => false)
     if (!valid) {
       return
     }
-    console.log('changePassword')
     const confirm = await ElMessageBox.confirm(T('Confirm?', { param: T('ChangePassword') }), {
       confirmButtonText: T('Confirm'),
       cancelButtonText: T('Cancel'),

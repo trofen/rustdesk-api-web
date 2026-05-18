@@ -295,6 +295,9 @@
   "FixedPasswordWarning": {
     "One": "Las contraseñas fijas pueden ser filtradas, por favor úselas con precaución. Se recomienda usar contraseñas de un solo uso."
   },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "Para iniciar sesión con OIDC sin contraseña, introduce de 4 a 20 caracteres"
+  },
   "ExpireTime": {
     "One": "Tiempo de expiración"
   },

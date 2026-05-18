@@ -8,7 +8,7 @@
         </el-icon>
       </button>
     </div>
-    <el-dropdown class="menu-item">
+    <el-dropdown class="menu-item" trigger="click">
       <button class="title icon-title" type="button">
         <i class="el-icon el-tooltip__trigger" style="font-size: 24px;">
           <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="1.2em" height="1.2em">
@@ -23,7 +23,7 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-    <el-dropdown class="menu-item">
+    <el-dropdown class="menu-item" trigger="click">
       <button class="title user-title" type="button">
         <span class="avatar">{{ user.username?.slice(0, 1)?.toLowerCase() || 'a' }}</span>
         <span class="nickname">{{ user.username }}</span>

@@ -298,6 +298,9 @@
   "FixedPasswordWarning": {
     "One": "Les mots de passe fixes peuvent être divulgués, veuillez donc les utiliser avec prudence et l'utilisation de mots de passe à usage unique est recommandée"
   },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "Pour une connexion OIDC sans mot de passe, saisissez 4 à 20 caractères"
+  },
   "ExpireTime": {
     "One": "Heure d'expiration"
   },
