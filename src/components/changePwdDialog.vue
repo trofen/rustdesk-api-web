@@ -1,5 +1,12 @@
 <template>
-  <el-dialog v-model="v" class="responsive-dialog" :title="T('ChangePassword')" :show-close="false" @open="resetChangePwdForm">
+  <el-dialog
+      v-model="v"
+      append-to-body
+      class="responsive-dialog"
+      :title="T('ChangePassword')"
+      :show-close="false"
+      @open="resetChangePwdForm"
+  >
     <el-form ref="cpwd" class="dialog-form" :model="changePwdForm" :rules="chagePwdRules" label-width="150px" label-position="left">
       <el-form-item :label="T('OldPassword')" prop="old_password">
         <el-input v-model="changePwdForm.old_password" :placeholder="T('For OIDC login without a password, enter any 4-20 letters')" show-password></el-input>
