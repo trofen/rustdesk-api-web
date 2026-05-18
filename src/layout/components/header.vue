@@ -45,27 +45,27 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .icon-button {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--rd-border);
-    border-radius: var(--rd-radius);
-    background: var(--rd-surface);
+    width: 32px;
+    height: 32px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--rd-control-bg);
     color: var(--rd-text-muted);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 17px;
     cursor: pointer;
-    transition: border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+    transition: color 0.16s ease, background 0.16s ease, transform 0.16s ease;
 
     &:hover {
-      border-color: var(--rd-primary);
       color: var(--rd-primary);
-      background: var(--el-color-primary-light-9);
+      background: var(--rd-control-hover);
+      transform: translateY(-1px);
     }
   }
 
@@ -79,8 +79,8 @@
       display: block;
       min-width: 0;
       color: var(--rd-text);
-      font-size: 15px;
-      font-weight: 650;
+      font-size: 16px;
+      font-weight: 700;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -88,8 +88,8 @@
 
     .logo {
       display: block;
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       margin-right: 10px;
       border-radius: 6px;
     }

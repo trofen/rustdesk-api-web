@@ -4,7 +4,7 @@
           :collapse="isCollapse"
           :default-active="activeIndex"
           background-color="var(--rd-sidebar-bg)"
-          text-color="#d1d5db"
+          text-color="var(--rd-sidebar-text)"
           active-text-color="#ffffff"
           router
   >
@@ -46,7 +46,7 @@
   .menus {
     min-height: 100vh;
     border-right: none;
-    padding: 10px 8px;
+    padding: 12px 10px;
     background: var(--rd-sidebar-bg);
 
     &:not(.el-menu--collapse) {
@@ -55,23 +55,38 @@
 
     :deep(.el-menu-item),
     :deep(.el-sub-menu__title) {
-      height: 42px;
+      position: relative;
+      height: 44px;
       margin: 4px 0;
       border-radius: var(--rd-radius);
-      color: #d1d5db;
-      line-height: 42px;
+      color: var(--rd-sidebar-text);
+      line-height: 44px;
+      font-weight: 560;
+      letter-spacing: 0;
+      transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease;
     }
 
     :deep(.el-menu-item:hover),
     :deep(.el-sub-menu__title:hover) {
       background: var(--rd-sidebar-hover);
-      color: #fff;
+      color: var(--rd-sidebar-text-active);
     }
 
     :deep(.el-menu-item.is-active) {
-      background: var(--rd-primary);
-      color: #fff;
+      background: var(--rd-sidebar-active);
+      color: var(--rd-sidebar-text-active);
       font-weight: 650;
+    }
+
+    :deep(.el-menu-item.is-active::before) {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      border-radius: 999px;
+      background: var(--rd-primary);
+      content: "";
     }
 
     :deep(.el-icon) {

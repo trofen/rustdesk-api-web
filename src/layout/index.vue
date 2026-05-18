@@ -47,6 +47,7 @@
 .app-shell {
   min-height: 100vh;
   background: var(--rd-bg);
+  color: var(--rd-text);
 }
 
 .app-header {
@@ -54,20 +55,20 @@
   top: 0;
   z-index: 20;
   height: var(--rd-header-height);
-  padding: 0 20px;
+  padding: 0 18px;
   border-bottom: 1px solid var(--rd-border);
   background-color: var(--rd-header-bg);
   color: var(--rd-text);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
   display: flex;
 }
 
 .header-tags {
   height: auto;
   border-bottom: 1px solid var(--rd-border);
-  background: var(--rd-surface);
+  background: var(--rd-header-bg);
   display: flex;
-  padding: 0;
+  padding: 0 14px;
 }
 
 .app-left {
@@ -76,7 +77,8 @@
   z-index: 30;
   height: 100vh;
   transition: width 0.22s ease;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid var(--rd-border);
+  background: var(--rd-sidebar-bg);
 }
 
 .app-container {
@@ -85,7 +87,7 @@
 }
 
 .app-main {
-  padding: 18px;
+  padding: 20px 22px;
   background: var(--rd-bg);
 }
 

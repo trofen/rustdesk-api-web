@@ -1,21 +1,12 @@
 <template>
   <div class="setting">
     <div class="menu-item">
-      <el-switch
-          v-model="isDark"
-          style="--el-switch-on-color:#111827"
-      >
-        <template #active-action>
-          <el-icon>
-            <Moon/>
-          </el-icon>
-        </template>
-        <template #inactive-action>
-          <el-icon>
-            <Sunny color="#000"/>
-          </el-icon>
-        </template>
-      </el-switch>
+      <button class="title icon-title" type="button" @click="toggleTheme">
+        <el-icon>
+          <Moon v-if="isDark"/>
+          <Sunny v-else/>
+        </el-icon>
+      </button>
     </div>
     <el-dropdown class="menu-item">
       <button class="title icon-title" type="button">
@@ -34,7 +25,7 @@
     </el-dropdown>
     <el-dropdown class="menu-item">
       <button class="title user-title" type="button">
-        <!--        <el-image class="avatar" :src="user.avatar"></el-image>-->
+        <span class="avatar">{{ user.username?.slice(0, 1)?.toLowerCase() || 'a' }}</span>
         <span class="nickname">{{ user.username }}</span>
         <el-icon>
           <el-icon-arrow-down/>
@@ -57,9 +48,8 @@
   import { useUserStore } from '@/store/user'
   import { useAppStore } from '@/store/app'
   import changePwdDialog from '@/components/changePwdDialog.vue'
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { T } from '@/utils/i18n'
-  import { useDark } from '@vueuse/core'
   import { Sunny, Moon } from '@element-plus/icons'
 
   const userStore = useUserStore()
@@ -78,8 +68,10 @@
   const changeLang = (v) => {
     appStore.changeLang(v)
   }
-  const isDark = useDark()
-  // const toggleDark = useToggle(isDark)
+  const isDark = computed(() => appStore.setting.theme === 'dark')
+  const toggleTheme = () => {
+    appStore.toggleTheme()
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -88,7 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 
   .menu-item {
@@ -101,22 +93,22 @@
   }
 
   .title {
-    min-height: 34px;
-    border: 1px solid var(--rd-border);
-    border-radius: var(--rd-radius);
-    background: var(--rd-surface);
+    min-height: 36px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
     color: var(--rd-text);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     cursor: pointer;
-    transition: border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+    transition: border-color 0.16s ease, color 0.16s ease, background 0.16s ease, transform 0.16s ease;
 
     &:hover {
-      border-color: var(--rd-primary);
       color: var(--rd-primary);
-      background: var(--el-color-primary-light-9);
+      background: var(--rd-control-hover);
+      transform: translateY(-1px);
     }
 
     .nickname {
@@ -129,12 +121,25 @@
   }
 
   .icon-title {
-    width: 34px;
+    width: 36px;
     padding: 0;
+    font-size: 20px;
   }
 
   .user-title {
-    padding: 0 10px;
+    padding: 0 12px 0 3px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--rd-primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
   }
 }
 

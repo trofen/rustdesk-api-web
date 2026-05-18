@@ -74,10 +74,19 @@
 <style lang="scss" scoped>
 
 .tag {
-  border-radius: 0;
+  height: 28px;
+  margin: 6px 6px 6px 0;
+  border-radius: 999px;
   cursor: pointer;
+  border-color: var(--rd-border);
+  background: var(--rd-tag-bg);
+  color: var(--rd-text-muted);
+  font-weight: 560;
 
-  &.active {
+  &.el-tag--primary {
+    border-color: rgba(33, 150, 243, 0.45);
+    background: rgba(33, 150, 243, 0.16);
+    color: var(--rd-primary);
   }
 }
 </style>

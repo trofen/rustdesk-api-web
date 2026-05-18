@@ -21,6 +21,7 @@ const langs = {
 const savedLang = localStorage.getItem('lang')
 const browserLang = navigator.language || 'zh-CN'
 const defaultLang = savedLang || (langs[browserLang] ? browserLang : browserLang.split('-')[0]) || 'zh-CN'
+const defaultTheme = localStorage.getItem('theme') || 'dark'
 export const useAppStore = defineStore({
   id: 'App',
   state: () => ({
@@ -28,6 +29,7 @@ export const useAppStore = defineStore({
       title: 'Rustdesk API Admin',
       hello: '',
       sideIsCollapse: false,
+      theme: defaultTheme,
       logo,
       langs: langs,
       lang: defaultLang,
@@ -53,6 +55,17 @@ export const useAppStore = defineStore({
       this.setting.lang = lang
       this.setting.locale = langs[lang]
       localStorage.setItem('lang', lang)
+    },
+    applyTheme () {
+      document.documentElement.classList.toggle('dark', this.setting.theme === 'dark')
+      localStorage.setItem('theme', this.setting.theme)
+    },
+    setTheme (theme) {
+      this.setting.theme = theme === 'light' ? 'light' : 'dark'
+      this.applyTheme()
+    },
+    toggleTheme () {
+      this.setTheme(this.setting.theme === 'dark' ? 'light' : 'dark')
     },
     changeLang (v) {
       this.setLang(v)

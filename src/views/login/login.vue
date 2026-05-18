@@ -174,7 +174,9 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: radial-gradient(circle at top, var(--el-color-primary-light-9), var(--rd-bg) 42%);
+  background:
+    radial-gradient(circle at 50% 0%, var(--rd-login-glow), transparent 34%),
+    linear-gradient(180deg, var(--rd-login-bg-top) 0%, var(--rd-bg) 58%);
   padding: 20px;
   box-sizing: border-box;
 }
@@ -217,8 +219,8 @@ h1 {
 
 .login-button {
   width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
+  height: 42px;
+  margin-bottom: 12px;
   margin-left: 0;
 }
 
@@ -234,7 +236,7 @@ h1 {
     content: '';
     flex: 1;
     height: 1px;
-    background-color: #ddd;
+    background-color: var(--rd-border);
   }
 
   &::before {
@@ -259,12 +261,12 @@ h1 {
   gap: 10px;
   width: 100%;
   height: 50px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: black;
+  background-color: var(--rd-control-bg);
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius);
+  color: var(--rd-text);
   font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .oidc-icon {
@@ -274,9 +276,9 @@ h1 {
 }
 
 .login-logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 22px;
   display: block;
 }
 

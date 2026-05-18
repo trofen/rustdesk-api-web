@@ -11,6 +11,9 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/style.scss'
 import * as ElementIcons from '@element-plus/icons'
 
+const initialTheme = localStorage.getItem('theme') || 'dark'
+document.documentElement.classList.toggle('dark', initialTheme === 'dark')
+
 const app = createApp(App)
 app.use(ElementPlus, { locale: zhCn })
 app.use(pinia)
