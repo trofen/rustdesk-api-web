@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card :title="T('Userinfo')" shadow="hover">
-      <el-form class="info-form" ref="form" label-width="120px" label-suffix=":">
+      <el-form class="info-form" ref="form" label-width="150px" label-suffix=":">
         <el-form-item :label="T('Username')">
           <div>{{ userStore.username }}</div>
         </el-form-item>
@@ -92,8 +92,21 @@
 
 <style scoped lang="scss">
 .info-form {
-  width: 600px;
+  width: min(720px, 100%);
   margin: 0 auto;
+
+  :deep(.el-form-item__label) {
+    justify-content: flex-end;
+    white-space: nowrap;
+  }
+
+  :deep(.el-form-item__content) {
+    min-width: 0;
+  }
+
+  :deep(.el-table) {
+    width: 100%;
+  }
 
 }
 </style>
