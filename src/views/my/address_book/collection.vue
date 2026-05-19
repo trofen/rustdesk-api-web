@@ -10,10 +10,10 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-tag type="danger" effect="light" style="margin-bottom: 10px">{{ T('MyAddressBookTips') }}</el-tag>
-      <el-table :data="list" v-loading="listRes.loading" border>
+      <el-table :data="list" v-loading="listRes.loading" border table-layout="auto">
         <!--        <el-table-column prop="id" label="ID" align="center"/>-->
-        <el-table-column prop="name" :label="T('Name')" align="center"/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
+        <el-table-column prop="name" :label="T('Name')" align="center" min-width="180" show-overflow-tooltip/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" width="155"/>
         <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
         <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="360" fixed="right">
           <template #default="{row}">

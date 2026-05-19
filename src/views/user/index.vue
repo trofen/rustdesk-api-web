@@ -13,18 +13,18 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" align="center"></el-table-column>
-        <el-table-column prop="username" :label="T('Username')" align="center"/>
-        <el-table-column prop="email" :label="T('Email')" align="center"/>
-        <el-table-column prop="nickname" :label="T('Nickname')" align="center"/>
-        <el-table-column :label="T('Group')" align="center">
+      <el-table :data="listRes.list" v-loading="listRes.loading" border table-layout="auto">
+        <el-table-column prop="id" label="ID" align="center" width="72"></el-table-column>
+        <el-table-column prop="username" :label="T('Username')" align="center" min-width="140" show-overflow-tooltip/>
+        <el-table-column prop="email" :label="T('Email')" align="center" min-width="180" show-overflow-tooltip/>
+        <el-table-column prop="nickname" :label="T('Nickname')" align="center" min-width="120" show-overflow-tooltip/>
+        <el-table-column :label="T('Group')" align="center" width="120">
           <template #default="{row}">
             <span v-if="row.group_id"> <el-tag>{{ listRes.groups?.find(g => g.id === row.group_id)?.name }} </el-tag> </span>
             <span v-else> - </span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" align="center">
+        <el-table-column :label="T('Status')" align="center" width="96">
           <template #default="{row}">
             <el-switch v-model="row.status"
                        :active-value="ENABLE_STATUS"
@@ -33,10 +33,10 @@
             ></el-switch>
           </template>
         </el-table-column>
-        <el-table-column prop="remark" :label="T('Remark')" align="center"/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="390" class-name="table-actions">
+        <el-table-column prop="remark" :label="T('Remark')" align="center" min-width="150" show-overflow-tooltip/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" width="155"/>
+        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" width="155"/>
+        <el-table-column :label="T('Actions')" align="center" width="420" class-name="table-actions" fixed="right">
           <template #default="{row}">
             <el-button @click="toTag(row)">{{ T('UserTags') }}</el-button>
             <el-button @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>

@@ -180,18 +180,36 @@ body {
     overflow-x: auto;
   }
 
+  .el-table__inner-wrapper::before {
+    height: 0;
+  }
+
   .el-table th.el-table__cell {
-    height: 46px;
+    height: 38px;
     font-weight: 700;
     letter-spacing: 0;
   }
 
   .el-table td.el-table__cell {
-    padding: 8px 0;
+    padding: 6px 0;
   }
 
   .el-table__cell {
     border-bottom-color: var(--rd-border);
+  }
+
+  .el-table__header th.el-table__cell {
+    user-select: none;
+  }
+
+  .el-table__header th.el-table__cell:not(:last-child) {
+    cursor: col-resize;
+  }
+
+  .el-table.is-live-resizing,
+  .el-table.is-live-resizing * {
+    cursor: col-resize !important;
+    user-select: none;
   }
 }
 
@@ -323,22 +341,26 @@ body {
   content: "";
 }
 
-.table-actions {
+  .table-actions {
   .cell {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px;
-    justify-content: center;
+    justify-content: flex-end;
+    overflow: visible;
+    white-space: nowrap;
   }
 
   .el-button {
     margin: 0;
     min-width: 0;
-    min-height: 28px;
-    padding: 5px 9px;
+    min-height: 26px;
+    padding: 4px 8px;
     border-color: transparent;
     background: transparent;
     color: var(--rd-primary);
+    font-size: 13px;
+    line-height: 1.2;
 
     &:hover {
       background: var(--rd-control-hover);
@@ -351,8 +373,27 @@ body {
   }
 }
 
+.el-table__cell .cell:has(.el-button) {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  justify-content: flex-end;
+  overflow: visible;
+  white-space: nowrap;
+}
+
 .el-table .cell {
-  overflow-wrap: anywhere;
+  min-height: 18px;
+  padding: 0 10px;
+  overflow: hidden;
+  line-height: 1.25;
+  overflow-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.el-table .el-table__cell .el-button + .el-button {
+  margin-left: 0;
 }
 
 html.dark {

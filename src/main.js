@@ -10,6 +10,7 @@ import '@/permission'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/style.scss'
 import * as ElementIcons from '@element-plus/icons'
+import { installLiveTableResize } from '@/utils/tableResize'
 
 const initialTheme = localStorage.getItem('theme') || 'dark'
 document.documentElement.classList.toggle('dark', initialTheme === 'dark')
@@ -18,6 +19,7 @@ const app = createApp(App)
 app.use(ElementPlus, { locale: zhCn })
 app.use(pinia)
 app.use(router)
+installLiveTableResize()
 for (let icon in ElementIcons){
   app.component("ElIcon" +icon ,ElementIcons[icon])
 }
