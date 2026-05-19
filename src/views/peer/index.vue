@@ -71,7 +71,10 @@
         <template v-for="c in visibleColumns.filter(cc => cc.visible)" :key="c">
           <el-table-column v-if="c.name==='id'" prop="id" label="ID" align="center" width="130">
             <template #default="{row}">
-              <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
+              <span class="table-id-cell">
+                <span class="table-id-cell__value">{{ row.id }}</span>
+                <el-icon class="table-id-cell__copy" @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon>
+              </span>
             </template>
           </el-table-column>
           <el-table-column v-if="c.name==='cpu'" prop="cpu" label="CPU" align="center" width="80" show-overflow-tooltip/>

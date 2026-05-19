@@ -48,7 +48,10 @@
         <el-table :data="listRes.list" v-loading="listRes.loading" border>
           <el-table-column prop="id" label="ID" align="center" width="200">
             <template #default="{row}">
-              <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
+              <span class="table-id-cell">
+                <span class="table-id-cell__value">{{ row.id }}</span>
+                <el-icon class="table-id-cell__copy" @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon>
+              </span>
             </template>
           </el-table-column>
           <el-table-column prop="collection_id" :label="T('Name')" align="center" width="150">

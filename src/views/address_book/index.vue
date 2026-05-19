@@ -38,10 +38,10 @@
       <el-table :data="listRes.list" v-loading="listRes.loading" border table-layout="auto">
         <el-table-column prop="id" label="ID" align="center" width="130">
           <template #default="{row}">
-            <div>
-              <PlatformIcons :name="platformList.find(p=>p.label===row.platform)?.icon" style="width: 20px;height: 20px;display: inline-block" color="var(--basicBlack)"/>
-              {{ row.id }}
-              <el-icon @click="handleClipboard(row.id, $event)">
+            <div class="table-id-cell">
+              <PlatformIcons class="table-id-cell__platform" :name="platformList.find(p=>p.label===row.platform)?.icon" color="var(--rd-text)"/>
+              <span class="table-id-cell__value">{{ row.id }}</span>
+              <el-icon class="table-id-cell__copy" @click="handleClipboard(row.id, $event)">
                 <CopyDocument/>
               </el-icon>
             </div>

@@ -396,6 +396,43 @@ body {
   margin-left: 0;
 }
 
+.table-id-cell {
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  vertical-align: middle;
+}
+
+.table-id-cell__platform {
+  flex: 0 0 18px;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.table-id-cell__value {
+  min-width: 0;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-id-cell__copy {
+  flex: 0 0 auto;
+  color: var(--rd-text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.16s ease, transform 0.16s ease;
+
+  &:hover {
+    color: var(--rd-primary);
+    transform: translateY(-1px);
+  }
+}
+
 html.dark {
   color-scheme: dark;
   --tag-bg-color: #24262b;
